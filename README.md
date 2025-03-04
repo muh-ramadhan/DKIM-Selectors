@@ -17,7 +17,7 @@ private function dkimLookup($target)
         $target = preg_replace('/^www\./i', '', $target);
 
         // List of DKIM selectors to check
-        $selectors = ['default', 'INSERT_LIST_HERE'];
+        $selectors = ['default', 'selector1', 'selector2', 'mail', 'google', 'k1', 'smtpapi', 's1', 'protonmail', 'zoho', 'zmail', 'selector', 's2048', 's1024', 'krs', 'smtp', 'mx', 'dkim', 'email', 'mailchimp', 'news', 'mailgun', 'amazonses', 'selector3', 'selector4', 'selector5', 'postmark', 'pm', 's', 's2', 's3', 's4', 's5', 'keys', 'dk', 'mx1', 'mx2', 'mx3', 'mx4', 'cloud', 'key1', 'key2', 'key3', 'selector6', 'selector7', 'selector8', 'selector9', 'selector10'];
         $status = null;
 
         foreach ($selectors as $selector) {
@@ -50,6 +50,19 @@ private function dkimLookup($target)
 4. **DNS Lookup Execution**: Executes the `host` command to query TXT records for each selector.
 5. **Result Filtering**: Filters the output to check if the result contains `v=DKIM`.
 6. **Output**: Returns the DKIM record if found or an appropriate message if not.
+
+## List of Supported DKIM Selectors
+This code supports DKIM selectors from various email providers, including but not limited to:
+
+- **Google**: `google`
+- **Microsoft Outlook**: `selector1`, `selector2`
+- **ProtonMail**: `protonmail`
+- **Zoho Mail**: `zoho`, `zmail`
+- **Mailchimp**: `k1`
+- **Mailgun**: `mailgun`
+- **Amazon SES**: `amazonses`
+- **Postmark**: `postmark`, `pm`
+- **SendGrid**: `smtpapi`
 
 ## Example Usage
 ```php
