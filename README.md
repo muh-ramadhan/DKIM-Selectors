@@ -17,7 +17,7 @@ private function dkimLookup($target)
         $target = preg_replace('/^www\./i', '', $target);
 
         // List of DKIM selectors to check
-        $selectors = ['default', 'selector1', 'selector2', 'mail', 'google', 'k1', 'smtpapi', 's1', 'protonmail', 'zoho', 'zmail', 'selector', 's2048', 's1024', 'krs', 'smtp', 'mx', 'dkim', 'email', 'mailchimp', 'news', 'mailgun', 'amazonses', 'selector3', 'selector4', 'selector5', 'postmark', 'pm', 's', 's2', 's3', 's4', 's5', 'keys', 'dk', 'mx1', 'mx2', 'mx3', 'mx4', 'cloud', 'key1', 'key2', 'key3', 'selector6', 'selector7', 'selector8', 'selector9', 'selector10'];
+        $selectors = ['default', 'selector1', 'selector2', 'mail', 'google', 'k1', 'smtpapi', 's1', 'protonmail', 'zoho', 'zmail', 'selector', 's2048', 's1024', 'krs', 'smtp', 'mx', 'dkim', 'email', 'mailchimp', 'news', 'mailgun', 'amazonses', 'selector3', 'selector4', 'selector5', 'postmark', 'pm', 's', 's2', 's3', 's4', 's5', 'keys', 'dk', 'mx1', 'mx2', 'mx3', 'mx4', 'cloud', 'key1', 'key2', 'key3', 'selector6', 'selector7', 'selector8', 'selector9', 'selector10', 'google1', 'google2', 'sig1', 'sig2', 'fm1', 'fm2', 'tutanota', 'hushmail', 'gmx', 'mailbox', 'mailfence', 'posteo', 'skiff'];
         $status = null;
 
         foreach ($selectors as $selector) {
@@ -46,23 +46,54 @@ private function dkimLookup($target)
 ## How It Works
 1. **Input Validation**: The code checks if the input is an IP address — DKIM lookups only work for domains.
 2. **Domain Cleanup**: It removes `www.` from the domain if present.
-3. **Selector Iteration**: The method iterates over an array of selectors (`default`, and custom selectors).
+3. **Selector Iteration**: The method iterates over an array of selectors including popular selectors from various **Email Service Providers**.
 4. **DNS Lookup Execution**: Executes the `host` command to query TXT records for each selector.
 5. **Result Filtering**: Filters the output to check if the result contains `v=DKIM`.
 6. **Output**: Returns the DKIM record if found or an appropriate message if not.
 
-## List of Supported DKIM Selectors
-This code supports DKIM selectors from various email providers, including but not limited to:
+## Supported Email Providers
+- Gmail
+- Outlook
+- Yahoo! Mail
+- iCloud Mail
+- Zoho Mail
+- ProtonMail
+- Mailchimp
+- Mailgun
+- Amazon SES
+- Postmark
+- SendGrid
+- Yandex Mail
+- Fastmail
+- Tutanota
+- Hushmail
+- GMX Mail
+- AOL Mail
+- Mail.com
+- Mailbox.org
+- Mailfence
+- Posteo
+- Skiff
 
-- **Google**: `google`
-- **Microsoft Outlook**: `selector1`, `selector2`
-- **ProtonMail**: `protonmail`
-- **Zoho Mail**: `zoho`, `zmail`
-- **Mailchimp**: `k1`
-- **Mailgun**: `mailgun`
-- **Amazon SES**: `amazonses`
-- **Postmark**: `postmark`, `pm`
-- **SendGrid**: `smtpapi`
+## Common Selectors
+- `default`
+- `k1`
+- `s1`
+- `s2`
+- `s2048`
+- `s1024`
+- `dkim`
+- `smtp`
+- `keys`
+- `mx`
+- `email`
+- `cloud`
+- `mail`
+- `smtpapi`
+- `pm`
+- `key1`
+- `key2`
+- `key3`
 
 ## Example Usage
 ```php
@@ -72,7 +103,8 @@ echo $this->dkimLookup($domain);
 
 ## Notes
 - Make sure the `host` command is available on your server.
-- Customize the `INSERT_LIST_HERE` array to add additional selectors.
+- The selector list is continuously updated to cover more email providers.
+- Customize the selector array to add additional selectors if needed.
 
 ## License
 This project is licensed under the MIT License.
